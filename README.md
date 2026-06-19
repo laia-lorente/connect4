@@ -15,7 +15,7 @@ con WebSockets, oponente IA vía Groq y una estética **cute pastel/neon** con e
 
 ---
 
-## ✦ Funcionalidades
+## Funcionalidades
 
 | | |
 |---|---|
@@ -27,7 +27,7 @@ con WebSockets, oponente IA vía Groq y una estética **cute pastel/neon** con e
 
 ---
 
-## ✦ Stack tecnológico
+## Stack tecnológico
 
 <div align="center">
 
@@ -47,7 +47,7 @@ con WebSockets, oponente IA vía Groq y una estética **cute pastel/neon** con e
 
 ---
 
-## ✦ Arquitectura
+## Arquitectura
 
 ```
 ┌──────────────────────────────────────────────────────┐
@@ -88,7 +88,7 @@ con WebSockets, oponente IA vía Groq y una estética **cute pastel/neon** con e
 
 ---
 
-## ✦ Flujo del juego
+## Flujo del juego
 
 ```
         Introduce nombre + código de sala
@@ -118,7 +118,7 @@ con WebSockets, oponente IA vía Groq y una estética **cute pastel/neon** con e
 
 ---
 
-## ✦ Estructura del proyecto
+## Estructura del proyecto
 
 ```
 connect4/
@@ -152,7 +152,7 @@ connect4/
 
 ---
 
-## ✦ Ejecutar en local
+## Ejecutar en local
 
 ### Backend
 
@@ -182,7 +182,7 @@ ng serve
 
 ---
 
-## ✦ Despliegue
+## Despliegue
 
 | Servicio | Plataforma | Configuración |
 |---|---|---|
@@ -195,5 +195,5 @@ Variable de entorno en Render: `GROQ_API_KEY`
 
 ## ✦ Autora
 
-**Laia Lorenate**
+**Laia Lorente**
 [github.com/laia-lorente](https://github.com/laia-lorente)
