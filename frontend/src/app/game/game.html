@@ -1,0 +1,134 @@
+<div class="game-wrap">
+
+  <div class="side-deco left" aria-hidden="true">
+    <span>♥</span><span>★</span><span>♥</span><span>☆</span>
+    <span>♥</span><span>★</span><span>♥</span>
+  </div>
+
+  <div class="game-container">
+
+    <div class="game-header cute-card">
+      <div class="header-top">
+        <span class="heart-sm">♥</span>
+        <span class="header-title">CONECTA 4</span>
+        <span class="heart-sm">♥</span>
+      </div>
+      <div class="players-row">
+        <div class="player-badge" [class.active]="ws.currentTurn() === 'P1'">
+          <div class="badge-disc p1-disc"></div>
+          <div class="badge-info">
+            <span class="badge-name">{{ p1Name() }}</span>
+          </div>
+          @if (ws.currentTurn() === 'P1' && ws.phase() === 'playing') {
+            <span class="turn-arrow">◀</span>
+          }
+        </div>
+
+        <div class="vs-text">VS</div>
+
+        <div class="player-badge p2-side" [class.active]="ws.currentTurn() === 'P2'">
+          @if (ws.currentTurn() === 'P2' && ws.phase() === 'playing') {
+            <span class="turn-arrow">▶</span>
+          }
+          <div class="badge-info right">
+            <span class="badge-name">{{ p2Name() }}</span>
+            @if (ws.isAiGame()) {
+              <span class="badge-tag">IA</span>
+            }
+          </div>
+          <div class="badge-disc p2-disc"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="status-box" [class.my-turn]="ws.isMyTurn() && ws.phase() === 'playing'">
+      {{ ws.statusText() }}
+    </div>
+
+    @if (ws.phase() === 'waiting') {
+      <div class="waiting-card cute-card">
+        <div class="waiting-dots">
+          <span></span><span></span><span></span>
+        </div>
+        <p>{{ ws.waitMessage() || 'Esperando a que un rival entre a la sala...' }}</p>
+        <button class="cute-btn primary" (click)="playVsAi()">
+          ✦ JUGAR CONTRA LA IA
+        </button>
+              <button class="cute-btn danger" (click)="goHome()">
+          ⌂ VOLVER AL MENÚ
+        </button>
+      </div>
+    }
+
+    @if (ws.phase() === 'playing' || ws.phase() === 'finished') {
+      <div class="board-actions">
+        <button class="cute-btn danger leave-btn" (click)="goHome()">
+          ✕ SALIR DE LA SALA
+        </button>
+      </div>
+      <div class="board-wrapper">
+
+        <div class="board cute-card">
+          @for (col of cols; track col) {
+            <div
+              class="board-col"
+              (click)="onColumnClick(col)"
+              [class.col-active]="ws.isMyTurn() && ws.phase() === 'playing'"
+              [attr.aria-label]="'Jugar columna ' + (col + 1)"
+            >
+              @for (row of [0,1,2,3,4,5]; track row) {
+                <div
+                  class="cell"
+                  [class.p1]="getCell(row, col) === 'P1'"
+                  [class.p2]="getCell(row, col) === 'P2'"
+                >
+                  <div class="disc">
+                    @if (getCell(row, col) !== null) {
+                      <span class="disc-shine"></span>
+                    }
+                  </div>
+                </div>
+              }
+            </div>
+          }
+        </div>
+
+        @if (ws.phase() === 'finished') {
+          <div class="end-card cute-card">
+            <div class="end-title">
+              @if (ws.winner() === 'draw') {
+                🤝 ¡EMPATE!
+              } @else if (ws.winner() === ws.myColor()) {
+                🏆 ¡HAS GANADO!
+              } @else {
+                💫 ¡HAS PERDIDO...
+              }
+            </div>
+            <div class="end-actions">
+              <button class="cute-btn primary" (click)="playAgain()">
+                ↺ VOLVER A JUGAR
+              </button>
+        <button class="cute-btn danger" (click)="goHome()">
+                ⌂ MENÚ PRINCIPAL
+              </button>
+            </div>
+          </div>
+        }
+
+      </div>
+    }
+
+    @if (ws.errorMsg() && ws.phase() !== 'finished') {
+      <div class="error-banner">⚠ {{ ws.errorMsg() }}</div>
+    }
+
+
+
+  </div>
+
+  <div class="side-deco right" aria-hidden="true">
+    <span>♥</span><span>☆</span><span>♥</span><span>★</span>
+    <span>♥</span><span>☆</span><span>♥</span>
+  </div>
+
+</div>

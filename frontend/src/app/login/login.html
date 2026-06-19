@@ -1,0 +1,81 @@
+<div class="login-wrap">
+
+  <span class="deco deco-1">♥</span>
+  <span class="deco deco-2">★</span>
+  <span class="deco deco-3">♥</span>
+  <span class="deco deco-4">☆</span>
+
+  <div class="card cute-card">
+
+    <div class="card-header">
+      <span class="heart-icon">♥</span>
+      <span class="title">CONECTA 4</span>
+      <span class="heart-icon">♥</span>
+    </div>
+
+    <div class="card-body">
+
+      <div class="mini-board" aria-hidden="true">
+        @for (row of miniBoard; track $index) {
+          <div class="mini-row">
+            @for (cell of row; track $index) {
+              <div class="mini-cell" [class]="cell"></div>
+            }
+          </div>
+        }
+      </div>
+
+      <form (ngSubmit)="onSubmit()" novalidate>
+
+        <div class="field">
+          <label for="playerName">✦ NOMBRE DEL JUGADOR</label>
+          <input
+            id="playerName"
+            class="cute-input"
+            type="text"
+            [(ngModel)]="playerName"
+            name="playerName"
+            placeholder="tu nombre..."
+            maxlength="16"
+            required
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="field">
+          <label for="roomName">✦ CÓDIGO DE SALA</label>
+          <input
+            id="roomName"
+            class="cute-input"
+            type="text"
+            [(ngModel)]="roomName"
+            name="roomName"
+            placeholder="sala01..."
+            maxlength="12"
+            required
+            autocomplete="off"
+          />
+          <span class="hint">
+            Misma sala = juegan juntos · sala nueva = vs IA
+          </span>
+        </div>
+
+        @if (ws.errorMsg()) {
+          <div class="error-box">⚠ {{ ws.errorMsg() }}</div>
+        }
+
+        <button
+          type="submit"
+          class="cute-btn primary submit-btn"
+          [disabled]="!playerName.trim() || !roomName.trim()"
+        >
+          ▶ ENTRAR A LA SALA
+        </button>
+
+      </form>
+    </div>
+
+
+
+  </div>
+</div>
