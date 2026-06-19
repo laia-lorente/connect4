@@ -204,3 +204,4 @@ Variables de entorno configuradas en el dashboard de Render (nunca en git):
 Junior Full Stack Developer · Barcelona  
 [github.com/mee96](https://github.com/mee96)
 
+"# connect4" 
