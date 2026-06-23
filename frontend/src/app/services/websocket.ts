@@ -17,7 +17,7 @@ export class WebsocketService implements OnDestroy {
 
   private readonly WS_URL = location.hostname === 'localhost'
     ? 'ws://localhost:8000/ws'
-    : 'wss://conecta4-backend.onrender.com/ws';
+    : 'wss://conecta4-backend-rngq.onrender.com/ws';
   private ws: WebSocket | null = null;
 
   // ── Signals ──
