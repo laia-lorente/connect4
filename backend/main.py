@@ -14,7 +14,10 @@ app = FastAPI(title="Conecta 4 API")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "https://conecta4-frontend-d6jw.onrender.com",
+        "http://localhost:4200",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
